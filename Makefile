@@ -74,3 +74,5 @@ re: clean all
 
 .PHONY: all re clean fclean bonus
 
+.SILENT:
+
