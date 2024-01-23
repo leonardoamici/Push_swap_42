@@ -80,13 +80,14 @@ static char	*ft_leftover(char *temp)
 	y = 0;
 	while (temp[i] != '\n' && temp[i] != '\0')
 		i++;
+	if (temp[i] == '\n')
+		i++;
 	if (!temp[i])
 	{
 		free(temp);
 		return (0);
 	}
 	str = ft_calloc((ft_strlen(temp) - i + 1), sizeof(char));
-	i++;
 	while (temp[i] != '\0')
 	{
 		str[y] = temp[i];
@@ -101,11 +102,15 @@ char	*get_next_line(int fd)
 {
 	static char	*temp[4096];
 	char		*ret;
-
+	
+	ret = NULL;
 	if (fd < 0 || BUFFER_SIZE <= 0 || read(fd, 0, 0) < 0)
 		return (NULL);
-	temp[fd] = get_first_line(fd, temp[fd]);
-	ret = get_return(temp[fd]);
-	temp[fd] = ft_leftover(temp[fd]);
+	else
+	{
+		temp[fd] = get_first_line(fd, temp[fd]);
+		ret = get_return(temp[fd]);
+		temp[fd] = ft_leftover(temp[fd]);
+	}
 	return (ret);
 }

@@ -6,27 +6,27 @@
 /*   By: lamici <lamici@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/13 14:25:11 by abettini          #+#    #+#             */
-/*   Updated: 2023/03/10 11:07:01 by lamici           ###   ########.fr       */
+/*   Updated: 2024/01/23 12:35:07 by lamici           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap_bonus.h"
 
-void	ft_free_stack(t_stack *celso)
+void	ft_free_stack(t_stack *stack)
 {
 	int		size;
 	int		i;
 	t_stack	*temp;
 
-	size = ft_stack_size(celso);
+	size = ft_stack_size(stack);
 	if (size > 0)
 	{
-		temp = celso->next;
+		temp = stack->next;
 		i = 0;
 		while (i < size)
 		{
-			free(celso);
-			celso = temp;
+			free(stack);
+			stack = temp;
 			i++;
 			if (i < size)
 				temp = temp->next;

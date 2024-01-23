@@ -1,4 +1,4 @@
-CC = gcc
+CC = cc
 
 NAME = push_swap
 
@@ -34,31 +34,38 @@ BNS =   source_bonus/create_index_bonus.c \
 	source_bonus/rotate_bonus.c \
 	source_bonus/operations_bonus.c \
 	source_bonus/do_operations_bonus.c
+	
+OBJ = $(SRC:.c=.o)
+
+OBJ_B = $(BNS:.c=.o)
 
 FLAGS = -Wall -Werror -Wextra -g
 
-all: $(NAME)
+all: libcomp $(NAME)
 
 libcomp:
 		@make -C Libft
 
-$(NAME): libcomp
-	$(CC) $(FLAGS) $(SRC) $(LIBFT) -o $(NAME)
+$(NAME): $(OBJ)
+	$(CC) $(FLAGS) $(OBJ) $(LIBFT) -o $(NAME)
 	@echo "\033[92mpush_swap ready\033[0m"
 
-bonus: libcomp
-	$(CC) $(FLAGS) $(BNS) $(LIBFT) -o $(NAME2)
+bonus: $(OBJ_B)
+	@make -C Libft
+	$(CC) $(FLAGS) $(OBJ_B) $(LIBFT) -o $(NAME2)
 	@echo "\033[92mchecker ready\033[0m"
 
 libclean:
 		@make clean -C Libft
 
 clean:		libclean
+	rm -rf $(OBJ)
+	rm -rf $(OBJ_B)
 
 libfclean:
 		@make fclean -C Libft
 
-fclean:   	libfclean
+fclean:   	clean libfclean
 		rm -rf $(NAME)
 		rm -rf $(NAME2)
 		@echo "\033[92mpush_swap removed\033[0m"
@@ -67,4 +74,3 @@ re: clean all
 
 .PHONY: all re clean fclean bonus
 
-.SILENT:

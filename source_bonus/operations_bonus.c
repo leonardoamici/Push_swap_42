@@ -6,7 +6,7 @@
 /*   By: lamici <lamici@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/28 09:57:02 by lamici            #+#    #+#             */
-/*   Updated: 2023/03/10 10:46:27 by lamici           ###   ########.fr       */
+/*   Updated: 2024/01/23 12:28:37 by lamici           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,11 @@ void	ft_check_op_2(char *op, t_stack **a, t_stack **b)
 		else if (!ft_strcmp(op, "ss\n"))
 			ft_doswap(a, b, 2);
 		else
-			ft_close();
+		{
+			free(op);
+			get_next_line(-42);
+			ft_close(a, b);
+		}
 	}
 }
 

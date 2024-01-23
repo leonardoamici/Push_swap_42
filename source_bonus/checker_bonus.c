@@ -6,7 +6,7 @@
 /*   By: lamici <lamici@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/27 16:44:41 by lamici            #+#    #+#             */
-/*   Updated: 2023/03/10 11:07:37 by lamici           ###   ########.fr       */
+/*   Updated: 2024/01/23 12:36:17 by lamici           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,8 +24,10 @@ int	ft_check_stacks(t_stack **a, t_stack **b)
 	return (x);
 }
 
-int	ft_close(void)
+int	ft_close(t_stack **stack_a, t_stack **stack_b)
 {
+	ft_free_stack(*stack_a);
+	ft_free_stack(*stack_b);
 	write(2, "command does not exist\n", 23);
 	exit(1);
 }
@@ -43,7 +45,7 @@ void	ft_checker(t_stack **a, t_stack **b)
 		z = 0;
 		str = get_next_line(0);
 		ft_check_op_1(str, a, b);
-		if (str != 0)
+		if (str)
 			free(str);
 	}
 	x = ft_check_stacks(a, b);

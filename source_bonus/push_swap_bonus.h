@@ -6,7 +6,7 @@
 /*   By: lamici <lamici@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/09 15:12:56 by abettini          #+#    #+#             */
-/*   Updated: 2023/03/10 11:06:03 by lamici           ###   ########.fr       */
+/*   Updated: 2024/01/23 12:25:17 by lamici           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ void	ft_putindex(t_stack **stack);
 void	ft_print_index(t_stack *stack);
 void	ft_check_op_1(char *op, t_stack **a, t_stack **b);
 void	ft_check_op_2(char *op, t_stack **a, t_stack **b);
-int		ft_close(void);
-void	ft_free_stack(t_stack *celso);
+int		ft_close(t_stack **a, t_stack **b);
+void	ft_free_stack(t_stack *stack);
 
 #endif
